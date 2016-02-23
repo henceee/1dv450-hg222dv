@@ -1,0 +1,17 @@
+<div class="container">
+<%  if flash[:notice] %>
+    <div class="bg-warning text-warning">
+       <p class="bg-info" <%= flash[:notice] %></p>
+    </div>
+<% end %>
+
+<h1><%= @app.name %></h1>
+
+<dl class="dl-vertical">
+<dt>
+<p>Key: <%= @app.key %> </p>
+</dt>
+<dl class="dl-vertical">
+<p><%= link_to("Delete", destroyapp_path(@app),class:"btn btn-default") %></p>
+
+<p><%= link_to("Back", apikeyadmin_path,class:"btn btn-default") %></p>

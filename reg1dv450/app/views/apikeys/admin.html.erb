@@ -1,0 +1,21 @@
+<div class="container">
+<%  if flash[:notice] %>
+    <div class="bg-warning text-warning">
+       <p class="bg-info" <%= flash[:notice] %></p>
+    </div>
+<% end %>
+<h2>Authorized API:s</h2>
+<dl class="dl-vertical">
+<% @users.each do |user| %>
+  <dt><h4><%= user.name %></h4>
+  
+        <ul class="list-unstyled">
+        <% user.applications.each do |app|%>
+        <li> <%= link_to(app.name, showapp_path(app)) %> <%= link_to("Revoke", destroyapp_path(app),class:"btn btn-default") %></li>
+        <% end %>
+        </ul>
+  </dt>
+<% end %>
+</dl>
+
+<p><%= link_to("Log  Out", logout_path,class:"btn-primary btn-lg") %></p>

@@ -1,0 +1,21 @@
+<div class="container">
+<%  if flash[:notice] %>
+    <div class="bg-warning text-warning">
+       <p class="bg-info" <%= flash[:notice] %></p>
+    </div>
+<% end %>
+
+<h1> Your API:s</h1>
+
+<dl class="dl-vertical">
+    <%@user.applications.each do |app| %>
+    <dt>
+    <p><%= link_to(app.name, showapp_path(app)) %> <%= link_to("Delete", destroyapp_path(app),class:"btn btn-default") %></p>
+    </dt>
+    <% end %>
+</dl>
+
+
+<p><%= link_to("Create new", new_api_path, class:"btn btn-default") %></p>
+<br>
+<p><%= link_to("Log  Out", logout_path,class:"btn-primary btn-lg") %></p>
