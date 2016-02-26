@@ -104,50 +104,60 @@ class Api::ShowsController < Api::ApiController
     
     #PUT    /api/shows/:id(.:format)      
     def update
-        unless @show.nil?
-            if @show.update(show_params)
-                render  status: 200,                            
-                        json: { message: "Successfully updated show.",
-                                show: @show                            
-                              }
+        if creator? && current_creator == @show.creator_id
+            unless @show.nil?
+                if @show.update(show_params)
+                    render  status: 200,                            
+                            json: { message: "Successfully updated show.",
+                                    show: @show                            
+                                  }
+                else
+                    render  status: 422, 
+                            json: { 
+                                    message: "Show update failed.",
+                                    errors: @show.errors
+                                  }
+                end
             else
-                render  status: 422, 
-                        json: { 
-                                message: "Show update failed.",
+                render  status: 404, 
+                        json: {
+                                message: "Show not found",
                                 errors: @show.errors
                               }
             end
         else
-            render  status: 404, 
-                    json: {
-                            message: "Show not found",
-                            errors: @show.errors
-                          }
+            render  status: 401, 
+                        json: { message: "Unauthorized action, you may not update shows which you are not the creator of" }
         end
     end
     
     #DELETE /api/shows/:id(.:format)
     def destroy
-        unless  @show.nil?
-            if @show.destroy
-                render  status: 200,
-                        json: { message: "Show successfully deleted.",
-                                show: @show,
-                              }
-                        
+        if creator? && current_creator == @show.creator_id
+            unless  @show.nil?
+                if @show.destroy
+                    render  status: 200,
+                            json: { message: "Show successfully deleted.",
+                                    show: @show,
+                                  }
+                            
+                else
+                    render  status: 422,
+                            json: {
+                                    message: "Show update failed.",
+                                    errors: @show.errors
+                                  }
+                end
             else
-                render  status: 422,
+                render  status: 404,
                         json: {
-                                message: "Show update failed.",
-                                errors: @show.errors
+                                message: "Show not found",
+                                errors: @show.err
                               }
             end
         else
-            render  status: 404,
-                    json: {
-                            message: "Show not found",
-                            errors: @show.err
-                          }
+            render  status: 401, 
+                        json: { message: "Unauthorized action, you may not update shows which you are not the creator of" }
         end
     end
     

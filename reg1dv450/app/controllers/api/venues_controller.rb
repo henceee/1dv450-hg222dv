@@ -27,7 +27,6 @@ class Api::VenuesController < Api::ApiController
     end
     
     def create
-       if creator? 
         @venue = Venue.new(venue_params.except(:shows))
         
         #If there are any artists to be saved with this show

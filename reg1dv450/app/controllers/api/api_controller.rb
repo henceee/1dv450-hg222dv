@@ -42,4 +42,8 @@ module Api
             @limit  = params[:limit].to_i   if params[:limit].present?
         end
     end
+    
+    def creator?
+        current_creator.present?
+    end
 end
