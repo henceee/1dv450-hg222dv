@@ -20,4 +20,4 @@
 There, now you're all set to run the app, scavage the source code, what ever you need to do!
 
 ##For testing of the API
-I used cURL rather than postman, checkout curl.txt
+I used cURL rather than postman, checkout [curl.txt](https://github.com/henceee/1dv450-hg222dv/blob/master/reg1dv450/curl/CURL.txt)
