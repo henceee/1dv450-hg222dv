@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
    
     def index
-        #DEL, DO SOMEETHING ELSE HERE.
         @users = User.all
-        #render:json => @users
     end
     
     

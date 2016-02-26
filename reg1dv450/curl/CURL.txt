@@ -1,0 +1,201 @@
+--basic \
+-u admin@admin.com:0000 \
+
+------------------------- SHOWS ------------------------
+
+    ------------------------ READ ------------------------
+    
+    #GET:  /api/shows
+    curl \
+    -H "Authorization: Token token=c34285aa00e91734c6a0f86c7c495807" \
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X GET \
+    https://dv450-hg222dv-hencee.c9users.io/api/shows
+    
+    
+    
+    #GET:  /api/shows/2.json
+    
+    curl \
+    -H "Authorization: Token token=c34285aa00e91734c6a0f86c7c495807" \
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X GET \
+    https://dv450-hg222dv-hencee.c9users.io/api/shows/2.json
+    
+    
+    #GET:  /api/shows/2.xml
+    
+    curl \
+    -H "Accept: application/xml" \
+    -H "Content-type: application/xml" \
+    -X GET \
+    https://dv450-hg222dv-hencee.c9users.io/api/shows/2.xml
+    
+    ------------------------ CREATE ------------------------
+    
+    #POST   /api/shows.json
+    
+    curl \
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X POST \
+    -d '{"name":"test", "description":"testing post to create" }' \
+    https://dv450-hg222dv-hencee.c9users.io/api/shows.json
+    
+    
+    curl \
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X POST \
+    -d '{"show":{"name":"test", "description":"testing post to create", "artists":[{"name":"hey"}]}}' \
+    https://dv450-hg222dv-hencee.c9users.io/api/shows.json
+    
+    
+    ------------------------ UPDATE ------------------------
+    
+    curl \
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X PUT \
+    -d '{"name":"new name", "description":"testing update" }' \
+    https://dv450-hg222dv-hencee.c9users.io/api/shows/1.json
+    
+    
+    ------------------------ DELETE ------------------------
+    
+    curl \
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X DELETE \
+    https://dv450-hg222dv-hencee.c9users.io//api/shows/1.json
+
+
+
+
+------------------------- ARTISTS ------------------------
+
+    ------------------------ READ ------------------------
+    
+    #GET: api/artists
+    
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X GET \
+    https://dv450-hg222dv-hencee.c9users.io/api/artists
+    
+    #GET:  api/artists/1.json
+    
+    curl \
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X GET \
+    https://dv450-hg222dv-hencee.c9users.io/api/artists/1.json
+    
+    #GET:  api/artists/1.xml
+    
+    curl \
+    -H "Accept: application/xml" \
+    -H "Content-type: application/xml" \
+    -X GET \
+    https://dv450-hg222dv-hencee.c9users.io/api/artists/1.xml
+    
+    
+    ------------------------ CREATE ------------------------
+    
+    #POST   /api/artists.json
+    
+    curl \
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X POST \
+    -d '{"name":"test" }' \
+    https://dv450-hg222dv-hencee.c9users.io/api/artists.json
+    
+    
+    
+      ------------------------ UPDATE ------------------------
+    
+    curl \
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X PUT \
+    -d '{"name":"new name" }' \
+    https://dv450-hg222dv-hencee.c9users.io/api/artists/1.json
+    
+    ------------------------ DELETE ------------------------
+    
+    curl \
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X DELETE \
+    https://dv450-hg222dv-hencee.c9users.io//api/artists/1.json
+    
+    
+    
+    
+    
+    
+    
+    
+------------------------- VENUES ------------------------
+
+    ------------------------ READ ------------------------
+    #GET: api/venues
+    
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X GET \
+    https://dv450-hg222dv-hencee.c9users.io/api/venues
+    
+    #GET: api/venues/1.json
+    
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X GET \
+    https://dv450-hg222dv-hencee.c9users.io/api/venues/1.json
+    
+    #GET: api/venues/1.xml
+    -H "Accept: application/xml" \
+    -H "Content-type: application/xml" \
+    -X GET \
+    https://dv450-hg222dv-hencee.c9users.io/api/venues/1.xml
+    
+     ------------------------ CREATE ------------------------
+    
+    curl \
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X POST \
+    -d '{ "venueName":"Curl Venue", "longitude":35.9148264,"latitude":65.41206985, "adress":"somestreet 312" }' \
+    https://dv450-hg222dv-hencee.c9users.io/api/venues.json
+    
+    TODO: FIX => shows
+    
+     curl \
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X POST \
+    -d '{ "venue": {"venueName":"Curl Venue", "longitude":35.9148264,"latitude":65.41206985, "adress":"somestreet 312","shows": [{"name":"test", "description":"testing post to create" }] } }' \
+    https://dv450-hg222dv-hencee.c9users.io/api/venues.json
+    
+    
+     ------------------------ UPDATE ------------------------
+    
+    curl \
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X PUT \
+    -d '{"VenueName":"new name", "longitude":35.9148264,"latitude":65.41206985, "adress":"newstreet 321"  }' \
+    https://dv450-hg222dv-hencee.c9users.io/api/venues/1.json
+    
+    ------------------------ DELETE ------------------------
+    
+    curl \
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X DELETE \
+    https://dv450-hg222dv-hencee.c9users.io//api/venues/1.json
+    
+    

@@ -5,6 +5,9 @@ class CreateShows < ActiveRecord::Migration
       t.belongs_to :creator
       t.belongs_to :venue, index:true
       t.belongs_to :venue
+      
+      t.string :name
+      t.string :description
       t.timestamps null: false
     end
   end

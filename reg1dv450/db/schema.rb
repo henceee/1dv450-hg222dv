@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222201604) do
+ActiveRecord::Schema.define(version: 20160224144724) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "name"
@@ -27,22 +27,34 @@ ActiveRecord::Schema.define(version: 20160222201604) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "show_id"
   end
 
   create_table "creators", force: :cascade do |t|
-    t.integer  "user_id"
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.boolean  "admin",           null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "setlists", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.integer  "show_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "creators", ["user_id"], name: "index_creators_on_user_id"
+  add_index "setlists", ["artist_id"], name: "index_setlists_on_artist_id"
+  add_index "setlists", ["show_id"], name: "index_setlists_on_show_id"
 
   create_table "shows", force: :cascade do |t|
     t.integer  "creator_id"
     t.integer  "venue_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "shows", ["creator_id"], name: "index_shows_on_creator_id"
