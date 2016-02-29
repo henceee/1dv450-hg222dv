@@ -11,9 +11,33 @@
     -H "Accept: application/json" \
     -H "Content-type: application/json" \
     -X GET \
-    https://dv450-hg222dv-hencee.c9users.io/api/shows
+    https://dv450-hg222dv-hencee.c9users.io/api/shows?key=10248e83332b816c0118c2a5917c1ce0
     
     
+       
+    curl \
+    -H "Authorization: Token token=c34285aa00e91734c6a0f86c7c495807" \
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X GET \
+    https://dv450-hg222dv-hencee.c9users.io/api/shows?key=10248e83332b816c0118c2a5917c1ce0&lat=65.41206985&long=35.9148264
+    
+    
+        curl \
+    -H "Authorization: Token token=c34285aa00e91734c6a0f86c7c495807" \
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X GET \
+    https://dv450-hg222dv-hencee.c9users.io/api/shows?key=10248e83332b816c0118c2a5917c1ce0&adress=fakeadress%123
+    
+    #GET:  /api/shows/2.json
+    
+            curl \
+    -H "Authorization: Token token=c34285aa00e91734c6a0f86c7c495807" \
+    -H "Accept: application/json" \
+    -H "Content-type: application/json" \
+    -X GET \
+    https://dv450-hg222dv-hencee.c9users.io/api/shows?key=10248e83332b816c0118c2a5917c1ce0&query=fakeadress%123
     
     #GET:  /api/shows/2.json
     
@@ -22,7 +46,7 @@
     -H "Accept: application/json" \
     -H "Content-type: application/json" \
     -X GET \
-    https://dv450-hg222dv-hencee.c9users.io/api/shows/2.json
+    https://dv450-hg222dv-hencee.c9users.io/api/shows/2.json?key=10248e83332b816c0118c2a5917c1ce0
     
     
     #GET:  /api/shows/2.xml
@@ -31,7 +55,7 @@
     -H "Accept: application/xml" \
     -H "Content-type: application/xml" \
     -X GET \
-    https://dv450-hg222dv-hencee.c9users.io/api/shows/2.xml
+    https://dv450-hg222dv-hencee.c9users.io/api/shows/2.xml?key=10248e83332b816c0118c2a5917c1ce0
     
     ------------------------ CREATE ------------------------
     
@@ -42,7 +66,7 @@
     -H "Content-type: application/json" \
     -X POST \
     -d '{"name":"test", "description":"testing post to create" }' \
-    https://dv450-hg222dv-hencee.c9users.io/api/shows.json
+    https://dv450-hg222dv-hencee.c9users.io/api/shows.json?key=10248e83332b816c0118c2a5917c1ce0
     
     
     curl \
@@ -50,7 +74,7 @@
     -H "Content-type: application/json" \
     -X POST \
     -d '{"show":{"name":"test", "description":"testing post to create", "artists":[{"name":"hey"}]}}' \
-    https://dv450-hg222dv-hencee.c9users.io/api/shows.json
+    https://dv450-hg222dv-hencee.c9users.io/api/shows.json?key=10248e83332b816c0118c2a5917c1ce0
     
     
     ------------------------ UPDATE ------------------------
@@ -60,7 +84,7 @@
     -H "Content-type: application/json" \
     -X PUT \
     -d '{"name":"new name", "description":"testing update" }' \
-    https://dv450-hg222dv-hencee.c9users.io/api/shows/1.json
+    https://dv450-hg222dv-hencee.c9users.io/api/shows/1.json?key=10248e83332b816c0118c2a5917c1ce0
     
     
     ------------------------ DELETE ------------------------
@@ -69,7 +93,7 @@
     -H "Accept: application/json" \
     -H "Content-type: application/json" \
     -X DELETE \
-    https://dv450-hg222dv-hencee.c9users.io//api/shows/1.json
+    https://dv450-hg222dv-hencee.c9users.io//api/shows/1.json?key=10248e83332b816c0118c2a5917c1ce0
 
 
 
@@ -91,7 +115,7 @@
     -H "Accept: application/json" \
     -H "Content-type: application/json" \
     -X GET \
-    https://dv450-hg222dv-hencee.c9users.io/api/artists/1.json
+    https://dv450-hg222dv-hencee.c9users.io/api/artists/1.json?key=10248e83332b816c0118c2a5917c1ce0
     
     #GET:  api/artists/1.xml
     
@@ -99,7 +123,7 @@
     -H "Accept: application/xml" \
     -H "Content-type: application/xml" \
     -X GET \
-    https://dv450-hg222dv-hencee.c9users.io/api/artists/1.xml
+    https://dv450-hg222dv-hencee.c9users.io/api/artists/1.xml?key=10248e83332b816c0118c2a5917c1ce0
     
     
     ------------------------ CREATE ------------------------
@@ -111,7 +135,7 @@
     -H "Content-type: application/json" \
     -X POST \
     -d '{"name":"test" }' \
-    https://dv450-hg222dv-hencee.c9users.io/api/artists.json
+    https://dv450-hg222dv-hencee.c9users.io/api/artists.json?key=10248e83332b816c0118c2a5917c1ce0
     
     
     
@@ -122,7 +146,7 @@
     -H "Content-type: application/json" \
     -X PUT \
     -d '{"name":"new name" }' \
-    https://dv450-hg222dv-hencee.c9users.io/api/artists/1.json
+    https://dv450-hg222dv-hencee.c9users.io/api/artists/1.json?key=10248e83332b816c0118c2a5917c1ce0
     
     ------------------------ DELETE ------------------------
     
@@ -130,7 +154,7 @@
     -H "Accept: application/json" \
     -H "Content-type: application/json" \
     -X DELETE \
-    https://dv450-hg222dv-hencee.c9users.io//api/artists/1.json
+    https://dv450-hg222dv-hencee.c9users.io//api/artists/1.json?key=10248e83332b816c0118c2a5917c1ce0
     
     
     
@@ -147,7 +171,7 @@
     -H "Accept: application/json" \
     -H "Content-type: application/json" \
     -X GET \
-    https://dv450-hg222dv-hencee.c9users.io/api/venues
+    https://dv450-hg222dv-hencee.c9users.io/api/venues?key=10248e83332b816c0118c2a5917c1ce0
     
     #GET: api/venues/1.json
     
@@ -160,7 +184,7 @@
     -H "Accept: application/xml" \
     -H "Content-type: application/xml" \
     -X GET \
-    https://dv450-hg222dv-hencee.c9users.io/api/venues/1.xml
+    https://dv450-hg222dv-hencee.c9users.io/api/venues/1.xml?key=10248e83332b816c0118c2a5917c1ce0
     
      ------------------------ CREATE ------------------------
     
@@ -169,7 +193,7 @@
     -H "Content-type: application/json" \
     -X POST \
     -d '{ "venueName":"Curl Venue", "longitude":35.9148264,"latitude":65.41206985, "adress":"somestreet 312" }' \
-    https://dv450-hg222dv-hencee.c9users.io/api/venues.json
+    https://dv450-hg222dv-hencee.c9users.io/api/venues.json?key=10248e83332b816c0118c2a5917c1ce0
     
     TODO: FIX => shows
     
@@ -178,7 +202,7 @@
     -H "Content-type: application/json" \
     -X POST \
     -d '{ "venue": {"venueName":"Curl Venue", "longitude":35.9148264,"latitude":65.41206985, "adress":"somestreet 312","shows": [{"name":"test", "description":"testing post to create" }] } }' \
-    https://dv450-hg222dv-hencee.c9users.io/api/venues.json
+    https://dv450-hg222dv-hencee.c9users.io/api/venues.json?key=10248e83332b816c0118c2a5917c1ce0
     
     
      ------------------------ UPDATE ------------------------
@@ -188,7 +212,7 @@
     -H "Content-type: application/json" \
     -X PUT \
     -d '{"VenueName":"new name", "longitude":35.9148264,"latitude":65.41206985, "adress":"newstreet 321"  }' \
-    https://dv450-hg222dv-hencee.c9users.io/api/venues/1.json
+    https://dv450-hg222dv-hencee.c9users.io/api/venues/1.json?key=10248e83332b816c0118c2a5917c1ce0
     
     ------------------------ DELETE ------------------------
     
@@ -196,6 +220,6 @@
     -H "Accept: application/json" \
     -H "Content-type: application/json" \
     -X DELETE \
-    https://dv450-hg222dv-hencee.c9users.io//api/venues/1.json
+    https://dv450-hg222dv-hencee.c9users.io//api/venues/1.json?key=10248e83332b816c0118c2a5917c1ce0
     
     

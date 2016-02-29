@@ -1,6 +1,7 @@
 class Api::ShowsController < Api::ApiController
     before_filter :find_show
-  
+     before_filter :offset_limit_params, only: [:index]
+            
       
     def find_show
         unless params[:id].nil?
@@ -18,31 +19,31 @@ class Api::ShowsController < Api::ApiController
             shows = creator.shows
         elsif params[:lat].present? && params[:long].present?
 
-            venues = Venue.near([params[:lat],params[:long]],100,units: :km)    
+            near_venues = Venue.near([params[:lat],params[:long]],100,units: :km)    
             shows =[]
-            venues.each do |venue|
-                venue.shows.each do |show|
-                    shows.push(show)
-                end
+            near_venues.each do |venue|
+                shows.push(Show.where(:venue_id => venue.id))
             end
+
+            
         elsif params[:adress].present?
-            venues = Venue.near(params[:adress],100,units: :km)
+            near_venues = Venue.near(params[:adress],100,units: :km)
             shows =[]
-            venues.each do |venue|
-                venue.shows.each do |show|
-                    shows.push(show)
-                end
+            near_venues.each do |venue|
+                shows.push(Show.where(:venue_id => venue.id))
             end
+        elsif params[:query].present?
+        
+        shows = Show.where("lower(name) like :search", search: "%#{query_params.downcase}%")
         else
          shows = Show.all
         end
-       unless @shows.nil?
+       unless shows.nil?
        
        shows = shows.drop(@offset)
        shows = shows.take(@limit)
        
-       respond_with status: 200,        shows: shows,
-                    selfURL: api_shows_path
+       respond_with shows, include: [:venue], status: :ok
        else
            respond_with status: 404,    selfURL: api_shows_path
        end
@@ -78,7 +79,7 @@ class Api::ShowsController < Api::ApiController
 
             artist_params.each do |artist|
                 if Artist.exists?(artist)
-                  @show.Artist << Artist.find_by_name(artist["name"])
+                  @show.artists << Artist.find_by_name(artist["name"])
                 else
                   @show.artists << Artist.new(artist)
                 end
@@ -87,12 +88,7 @@ class Api::ShowsController < Api::ApiController
         end
         
         if @show.save
-            render  status: 201,
-                    json:{  
-                            message: "Successfully created show.",
-                            show: @show,
-                            artists: @show.artists
-                         }
+            render json: @show, include: [:artists], status: :ok 
         else
             render  status: 422,
                     json:{  
@@ -107,10 +103,7 @@ class Api::ShowsController < Api::ApiController
         if creator? && current_creator == @show.creator_id
             unless @show.nil?
                 if @show.update(show_params)
-                    render  status: 200,                            
-                            json: { message: "Successfully updated show.",
-                                    show: @show                            
-                                  }
+                      render json: @show, include: [:artists], status: :ok 
                 else
                     render  status: 422, 
                             json: { 

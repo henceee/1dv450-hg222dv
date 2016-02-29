@@ -24,8 +24,8 @@ module Api
      
         
         def restrict_access
-                authenticate_or_request_with_http_token do |token, options|
-                appkey = Application.find_by(key: token)
+            if params[:key].present?
+                appkey = Application.find_by(key: params[:key])
                 if(appkey.nil?)
                     render status: 401, json: { message: "Incorrect credentials, check your key." }
                 else
@@ -34,12 +34,20 @@ module Api
                         session[:creatorid] = appkey.user_id
                     end
                 end
+            else
+                 render status: 401, json: { message: "Incorrect credentials, please add key." }
             end
         end
 
         def offset_limit_params
-            @offset = params[:offset].to_i  if params[:offset].present?
-            @limit  = params[:limit].to_i   if params[:limit].present?
+            if params[:offset].present?
+              @offset = params[:offset].to_i
+            end
+            if params[:limit].present?
+              @limit = params[:limit].to_i
+            end
+            @offset ||= OFFSET
+            @limit  ||= LIMIT
         end
     end
     
